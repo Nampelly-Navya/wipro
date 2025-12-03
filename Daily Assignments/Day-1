@@ -56,3 +56,77 @@ public class ArithmeticOperations {
         scanner.close();
     }
 }
+
+2.Write a program that takes two boolean values as input and performs logical operations (AND, OR) on them using the logical operators& print the result.
+# Examples: 
+1. boolean a = true; 
+   boolean b = false; 
+   boolean result = a && b; 
+   System.out.println(result); // Output: false 
+Sample Input & Output:
+
+Sample Input:
+true
+false
+
+Sample Output:
+false
+true
+Hints:
+1. Remember to use the correct syntax for the logical operators.
+2. Make sure to include the necessary boolean variables or values in the logical operations.
+3. Check the output on the console to verify if the logical operations are working correctly.
+answer
+
+import java.util.Scanner;
+
+public class LogicalOperatorsExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean input1 = scanner.nextBoolean();
+        boolean input2 = scanner.nextBoolean();
+        boolean result=(input1&&input2);
+        boolean result1=(input1||input2);
+        System.out.println(result);
+        System.out.println(result1);
+
+    }
+}
+
+3.Write a program that takes two integers as input and compares them using relational operators. Print 'true' if the first integer is greater than the second integer, and 'false' otherwise.
+Examples:
+
+# Examples: 
+1. Input: 5, 3 
+   Output: true 
+
+2. Input: 2, 7 
+   Output: false 
+Sample Input & Output:
+
+Sample Input:
+5
+3
+
+Sample Output:
+true
+Hints:
+1. Use the '>' operator to compare the first integer with the second integer.
+2. Remember to use the correct syntax for the relational operator.
+3. Check the output on the console to verify if the comparison is working correctly.
+Answer
+import java.util.Scanner;
+
+public class RelationalOperatorExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int num1 = scanner.nextInt();
+        int num2 = scanner.nextInt();
+        // TODO: Write your code here
+        if(num1>num2){
+            System.out.println(true);
+        }else{
+        System.out.println(false);
+        }
+    }
+}
