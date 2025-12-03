@@ -1,0 +1,58 @@
+1. Arithmetic Operators in Java
+Instructions:
+Write a program that takes two numbers as input from the user and performs arithmetic operations on them using the arithmetic operators (sum, difference, product, quotient, remainder) in Java.
+# Examples: 
+1. int num1 = 10; 
+   int num2 = 5; 
+   int sum = num1 + num2; 
+   System.out.println(sum); // Output: 15  
+Sample Input & Output:
+
+Sample Input:
+Enter the first number: 10
+Enter the second number: 5
+
+Sample Output:
+Sum: 15
+Difference: 5
+Product: 50
+Quotient: 2
+Remainder: 0
+Hints:
+1. Use the Scanner class to read input from the user.
+2. Declare variables to store the input values and the results of the arithmetic operations.
+3. Use the appropriate arithmetic operators to perform the calculations.
+4. Print the results using the System.out.println() method.
+5. Remember to handle division by zero when calculating the quotient.
+ANS:
+import java.util.Scanner;
+
+public class ArithmeticOperations {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // TODO: Write your code here
+        int num1=scanner.nextInt();
+         int num2=scanner.nextInt();
+        int sum=0;
+        int difference=0;
+        int product=0;
+        int quotient=0;
+        int remainder=0;
+        sum=num1+num2;
+         System.out.println("Sum: "+sum);
+         difference=num1-num2;
+          System.out.println("Difference: "+difference);
+          product=num1*num2;
+           System.out.println("Product: "+product);
+           if(num2!=0){
+           quotient=(int)num1/num2;
+            remainder=num1%num2;
+             System.out.println("Quotient: "+quotient);
+             System.out.println("Remainder: "+remainder);
+           }else{
+               System.out.println("Cannot divide by Zero.");
+           }
+           
+        scanner.close();
+    }
+}
