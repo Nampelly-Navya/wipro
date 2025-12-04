@@ -1,0 +1,313 @@
+Question 1
+
+
+Exception hanlding in java
+Write a Java program that takes two integers as input and performs division. The program should handle exceptions for invalid input (non-integer input) and division by zero. The program should continue to prompt the user for valid input until successful division is performed.
+
+Requirements:
+
+Handle InputMismatchException if the user inputs non-integer values.
+Handle ArithmeticException if the user attempts to divide by zero.
+Use a loop to ensure the program continues to prompt the user until valid input is received and the division is successfully performed.
+Sample Input and Output:
+Sample Run 1:
+Enter the first number: 10
+Enter the second number: 2
+Result: 5
+
+Sample Run 2:
+Enter the first number: 10
+Enter the second number: 0
+Cannot divide by zero. Please enter a valid divisor.
+Enter the second number: 2
+Result: 5
+
+Sample Run 3:
+Enter the first number: ten
+Invalid input. Please enter an integer.
+Enter the first number: 10
+Enter the second number: 2
+Result: 5
+
+Your answer
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class DivisionProgram {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int num1 = 0, num2 = 0;
+
+        while (true) {
+            try {
+                num1 = sc.nextInt();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer.");
+                sc.nextLine(); // clear invalid input
+            }
+        }
+
+        while (true) {
+            try {
+                num2 = sc.nextInt();
+
+                if (num2 == 0) {
+                    System.out.println("Cannot divide by zero. Please enter a valid divisor.");
+                    continue;
+                }
+
+                int result = num1 / num2;
+                System.out.println("Result: " + result);
+                break;
+
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer.");
+                sc.nextLine();
+            }
+        }
+
+        sc.close();
+    }
+}
+
+
+Question 2
+
+Multiple Catch Blocks
+You are required to catch Arithmetic or number format exceptions if present using multiple catch blocks in the code for finding of 99 with the number entered by user, else print "n is a factor of 99" or "n is not a factor of 99".
+
+Sample Input
+
+5
+
+Output Format
+
+5 is a not a factor of 99
+
+
+Input
+
+hi
+
+Output
+
+Number Format Exception java.lang.NumberFormatException: For input string: "hi"
+
+Your answer
+
+import java.util.Scanner;
+public class Test {
+
+    public static void main(String[] args) {
+ Scanner scn = new Scanner(System.in);
+        //write your answer here
+        try {
+            String input = scn.nextLine();
+            int num = Integer.parseInt(input);
+
+            if (99 % num == 0) {
+                System.out.println(num + " is a factor of 99");
+            }else{
+                System.out.println(num + " is a not a factor of 99");
+            }
+        }
+        catch (ArithmeticException e ) {
+            System.out.println("Arithemetic Exception " + e);
+        }
+        catch (NumberFormatException e) {
+            System.out.println("Number Format Exception " + e);
+        }
+    }
+}
+
+
+Question 3
+
+Exception Handling
+Write a Java program to create a method that takes a string as input and throws an exception if the string does not contain vowels.
+
+Sample Output:
+
+Original string: Java handling and managing exceptions
+
+String contains vowels.
+
+Original string: Typy gyps fly.
+
+String does not contain any vowels
+
+Your answer
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String text = sc.nextLine();
+        System.out.println("Original string: " + text);
+        try {
+            checkVowels(text);
+            System.out.println("String contains vowels");
+        } catch (NoVowelsException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void checkVowels(String text) throws NoVowelsException {
+        // convert to lowercase for easy checking
+        text = text.toLowerCase();
+        if (!(text.contains("a") || text.contains("e") || text.contains("i") || text.contains("o") || text.contains("u"))) {
+            throw new NoVowelsException("String does not contain any vowels");
+        }
+    }
+}
+class NoVowelsException extends Exception {
+    public NoVowelsException(String message) {
+        super(message);
+    }
+}
+
+Question 4
+
+Generic Data Analysis using JAVA
+Description:
+You are working on a data analysis module that needs to process different types of data. Implement a class named DataAnalyzer with the following requirements:
+
+
+Constructor:
+
+The class should have a constructor that takes an array of type T as its parameter and initializes an internal data structure to store the provided array.
+
+Calculate Average Method:
+
+Implement a method named calculateAverage that calculates and returns the average of the elements in the array.
+Ensure that the method works for numeric types (e.g., Integer, Double) and does not require a separate implementation for each type.
+Find Maximum Method:
+
+Implement a method named findMaximum that finds and returns the maximum element in the array.
+Ensure that the method works for comparable types (e.g., Integer, String) and does not require a separate implementation for each type.
+Data Summary Method: (Pre-Implemented as a Boiler Plate Code)
+
+Implement a method named dataSummary that prints a summary of the data, including the average and maximum values.
+
+
+Sample Input:
+
+2
+
+4
+
+45.9
+
+46.8
+
+57.3
+
+37.8
+
+Sample Output:
+
+Data Summary:
+
+Average: 46.95
+
+Maximum: 57.3
+
+
+
+
+
+
+
+Your answer
+
+import java.util.*;
+
+public class DataAnalyzer<T extends Number & Comparable<T>> {
+   //define the required methods
+    private T[] data; 
+    public DataAnalyzer(T[] data) {
+        this.data = data;
+    }
+
+    // Added: method to calculate average
+    public double calculateAverage() {
+        double sum = 0.0;
+        for (T value : data) {
+            sum += value.doubleValue();
+        }
+        return sum / data.length;
+    }
+
+    // Added: method to find maximum
+    public T findMaximum() {
+        T max = data[0];
+        for (T value : data) {
+            if (value.compareTo(max) > 0) {
+                max = value;
+            }
+        }
+        return max;
+    }
+    public void dataSummary() {
+        System.out.println("Data Summary:");
+        System.out.println("Average: " + calculateAverage());
+        System.out.println("Maximum: " + findMaximum());
+    }
+
+    public static void main(String[] args) {
+        // Example with integers
+        Scanner sc = new Scanner(System.in);
+        int ch = sc.nextInt();
+        
+          int size = sc.nextInt();
+        if(ch==1)
+        {
+        Integer[] integerData = new Integer[size];
+        for(int i=0;i<size;i++)
+        {
+          integerData[i] = sc.nextInt();
+        }
+        DataAnalyzer<Integer> integerAnalyzer = new DataAnalyzer<>(integerData);
+        integerAnalyzer.dataSummary();
+        }
+        else if(ch==2)
+        {
+        // Example with doubles
+        Double[] doubleData = new Double[size];
+        for(int i=0;i<size;i++)
+        {
+          doubleData[i] = sc.nextDouble();
+        }
+        
+        DataAnalyzer<Double> doubleAnalyzer = new DataAnalyzer<>(doubleData);
+        doubleAnalyzer.dataSummary();
+        }
+        else if(ch==3)
+        {
+        // Example with doubles
+        Short[] shortData = new Short[size];
+        for(int i=0;i<size;i++)
+        {
+          shortData[i] = sc.nextShort();
+        }
+        
+        DataAnalyzer<Short> doubleAnalyzer = new DataAnalyzer<>(shortData);
+        doubleAnalyzer.dataSummary();
+        }
+        else if(ch==4)
+        {
+        // Example with doubles
+        Float[] floatData = new Float[size];
+        for(int i=0;i<size;i++)
+        {
+          floatData[i] = sc.nextFloat();
+        }
+        
+        DataAnalyzer<Float> doubleAnalyzer = new DataAnalyzer<>(floatData);
+        doubleAnalyzer.dataSummary();
+        }
+    }
+}
