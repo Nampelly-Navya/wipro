@@ -1,0 +1,80 @@
+Question 1
+
+
+Thread in java
+You are required to build a calculator using concept of multithreading which performs the following arithematic operations:
+
+Sum, difference, product , ratio, power.
+
+Input Format  - two line separated integers
+
+Output Format  
+
+See in sample output
+
+Input 
+
+6
+
+8
+
+Output
+
+ARITHEMATIC OPERATIONS
+
+SUM 14
+
+DIFFERENCE -2
+
+PRODUCT 48
+
+RATIO 0
+
+POWER 1679616.0
+
+END OF A
+
+Your answer
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        int x = s.nextInt();
+        int y = s.nextInt();
+        A1 a = new A1(x, y);
+        a.start();
+    }
+}
+
+class A1 extends Thread {
+    int i, j;
+
+    A1(int x, int y) {
+        i = x;
+        j = y;
+    }
+
+    public void run() {
+        System.out.println("ARITHMETIC OPERATIONS");
+
+        Thread t1 = new Thread(() -> System.out.println("SUM " + (i + j)));
+        Thread t2 = new Thread(() -> System.out.println("DIFFERENCE " + (i - j)));
+        Thread t3 = new Thread(() -> System.out.println(" PRODUCT " + (i * j)));
+        Thread t4 = new Thread(() -> System.out.println("RATIO " + (i / j)));
+        Thread t5 = new Thread(() -> System.out.println("POWER " + Math.pow(i, j)));
+
+        try {
+            t1.start(); t1.join();
+            t2.start(); t2.join();
+            t3.start(); t3.join();
+            t4.start(); t4.join();
+            t5.start(); t5.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("END OF A");
+    }
+}
