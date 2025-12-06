@@ -1,0 +1,104 @@
+### Music Library API Test File
+### Use with VS Code REST Client Extension or IntelliJ HTTP Client
+
+### ====================== ADMIN SERVICE ======================
+
+### Add Song
+POST http://localhost:8080/admin/songs
+Content-Type: application/json
+
+{
+  "songName": "Shape of You",
+  "musicDirector": "Ed Sheeran",
+  "singer": "Ed Sheeran",
+  "releaseDate": "2017-01-06",
+  "albumName": "Divide",
+  "songType": "FREE",
+  "songStatus": "AVAILABLE"
+}
+
+### Get All Songs
+GET http://localhost:8080/admin/songs
+
+### Get Song by ID
+GET http://localhost:8080/admin/songs/1
+
+### Update Song Status
+PUT http://localhost:8080/admin/songs/1/status?status=NOTAVAILABLE
+
+### Delete Song
+DELETE http://localhost:8080/admin/songs/1
+
+
+### ====================== USER SERVICE ======================
+
+### Register User
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "username": "johndoe",
+  "password": "password123",
+  "email": "john@example.com",
+  "mobile": "1234567890",
+  "address1": "123 Main St",
+  "city": "New York"
+}
+
+### Login
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "johndoe",
+  "password": "password123"
+}
+
+### Get Available Songs (requires token)
+GET http://localhost:8080/api/user/songs
+Authorization: Bearer YOUR_TOKEN_HERE
+
+### Search Songs
+GET http://localhost:8080/api/user/songs/search?query=Ed
+Authorization: Bearer YOUR_TOKEN_HERE
+
+### Create Playlist
+POST http://localhost:8080/api/playlists
+Content-Type: application/json
+Authorization: Bearer YOUR_TOKEN_HERE
+
+{
+  "playlistName": "My Favorites"
+}
+
+### Get User Playlists
+GET http://localhost:8080/api/playlists
+Authorization: Bearer YOUR_TOKEN_HERE
+
+### Add Song to Playlist
+POST http://localhost:8080/api/playlists/1/songs?songId=1
+Authorization: Bearer YOUR_TOKEN_HERE
+
+### Get Playlist Songs
+GET http://localhost:8080/api/playlists/1/songs
+Authorization: Bearer YOUR_TOKEN_HERE
+
+### Play Song
+POST http://localhost:8080/api/player/play/1
+Authorization: Bearer YOUR_TOKEN_HERE
+
+### Stop Playback
+POST http://localhost:8080/api/player/stop
+Authorization: Bearer YOUR_TOKEN_HERE
+
+### Shuffle Playlist
+POST http://localhost:8080/api/player/shuffle/1
+Authorization: Bearer YOUR_TOKEN_HERE
+
+
+### ====================== NOTIFICATION SERVICE ======================
+
+### Get All Notifications
+GET http://localhost:8080/notify/all
